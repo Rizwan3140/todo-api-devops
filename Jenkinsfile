@@ -2,9 +2,10 @@ pipeline {
     agent any
 
     stages {
+
         stage('Clone') {
             steps {
-                git credentialsId: 'github-creds', url: 'https://github.com/Rizwan3140/todo-api-devops.git'
+                git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/Rizwan3140/todo-api-devops.git'
             }
         }
 
