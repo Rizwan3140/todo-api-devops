@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
-            steps {
-                git branch: 'main', credentialsId: 'github-creds', url: 'https://github.com/Rizwan3140/todo-api-devops.git'
-            }
-        }
-
         stage('Build') {
             steps {
                 sh 'mvn clean install'
