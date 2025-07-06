@@ -1,0 +1,17 @@
+- name: Deploy To-Do API with Docker
+  hosts: localhost
+  become: true
+  tasks:
+    - name: Stop and remove existing container if exists
+      docker_container:
+        name: todo-api-container
+        state: absent
+        force_kill: true
+
+    - name: Run new todo-api container
+      docker_container:
+        name: todo-api-container
+        image: todo-api
+        state: started
+        ports:
+          - "8081:8080"

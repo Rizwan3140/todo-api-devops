@@ -1,31 +1,27 @@
-package com.example.todo;
+package com.example.todo.controller;
 
+import com.example.todo.model.Todo;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping("/todos")
 public class TodoController {
-    private final List<String> todos = new ArrayList<>();
+
+    private final List<Todo> todos = new ArrayList<>();
 
     @GetMapping
-    public List<String> getAllTodos() {
+    public List<Todo> getTodos() {
         return todos;
     }
 
     @PostMapping
-    public String addTodo(@RequestBody String task) {
-        todos.add(task);
+    public String addTodo(@RequestBody Todo todo) {
+        // ⛔️ DO NOT convert to string
+        todos.add(todo);
         return "Added";
     }
-
-    @DeleteMapping("/{index}")
-    public String deleteTodo(@PathVariable int index) {
-        if (index >= 0 && index < todos.size()) {
-            todos.remove(index);
-            return "Deleted";
-        }
-        return "Invalid index";
-    }
 }
+
